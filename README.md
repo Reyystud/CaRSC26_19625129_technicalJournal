@@ -35,6 +35,7 @@ keterbacaan, dan profesionalisme.
 ---
 
 ## Struktur Repository
+```
 .
 ├── entries
 │   └── day1.tex
@@ -43,7 +44,7 @@ keterbacaan, dan profesionalisme.
 ├── main.pdf
 ├── main.tex
 └── README.md
-
+```
 
 ---
 
