@@ -1,0 +1,28 @@
+\subsection{DAY 2 - Jumat, 30 Januari 2026}
+Hari kedua di Pendidikan RSC Aksantara 2026 melanjutkan materi yang dipelajari untuk mantepin materi kita. Untuk day 2 ini mempelajari tentang \textbf{Protokol MAVLink dan SITL}.
+
+\paragraph{MAVLink (Micro Air Vehicle Link)\newline}
+Pada sesi ini, kita mempelajari tentang MAVLink atau Micro Air Vehicle Link yaitu protokol komunikasi pesan open source yang sangat ringan karena hanya beberapa puluh byte. Ini penting karena jaringan nirkabel punya bandwidth yang terbatas. MAVLink ini sudah menjadi standar untuk di riset dan industri, dipakai oleh sistem autopilot besar seperti PX4 dan ArduPilot. Selain itu, MAVLink mendukung komunikasi dua arah yang efisien dan bisa mengintegrasikan wahana UAV ke dalam jaringan internet.
+\paragraph{System ID dan Component ID\newline}
+Setiap entitas yang bisa mengirim atau menerima pesan MAVLink harus punya identitas unik agar tidak tertukar. Suatu sistem MAVLink (Wahana/GCS) bisa mempunyai banyak komponen.
+\subparagraph{System ID}
+\begin{itemize}
+    \item Merujuk pada identitas unik untuk satu sistem UAV.
+    \item Rentang nilai 1 sampai 255.
+    \item System ID 255 dialokasikan untuk GCS.
+    \item Semua komponen dalam wahana yang sama mempunyai System ID yang sama.
+\end{itemize}
+\subparagraph{Component ID}
+\begin{itemize}
+    \item Merujuk pada identitas spesifik untuk setiap komponen atau subsistem di dalam suatu wahana.
+    \item Sudah ada penomoran bawaan dari MAVLINK:
+    \begin{itemize}
+        \item FC: 1
+        \item Kamera: 100-105
+        \item Gimbal: 154
+        \item CC: 191-194
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Messages\newline}
+MAVLink punya berbagai jenis pesan untuk pertukaran data antarkomponen dalam sistem UAV. Tiap pesan punya ID unik yakni \textbf{Message ID}. Untuk MAVLink v1 ada 255, untuk MAVLink v2 hingga 16 juta. \textbf{Dialect} kumpulan definisi pesan yang dapat disesuaikan dengan kebutuhan sistem tertentu.
