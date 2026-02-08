@@ -38,11 +38,20 @@ keterbacaan, dan profesionalisme.
 ```
 .
 ├── entries
-│   └── day1.tex
+│   ├── day1.tex
+│   ├── day2.tex
+│   ├── handson1.tex
+│   └── handson2.tex
 ├── images
+│   ├── anatomi_mavlink.png
+│   ├── arsitektur_sitl.png
 │   └── uav_architecture.png
+├── main.aux
+├── main.log
+├── main.out
 ├── main.pdf
 ├── main.tex
+├── main.toc
 └── README.md
 ```
 
