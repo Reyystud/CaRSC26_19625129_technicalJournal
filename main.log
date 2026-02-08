@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2026.1.29)  7 FEB 2026 23:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2026.1.29)  8 FEB 2026 22:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -448,7 +448,7 @@ gan pemetaan
 
 
 [2]
-<images/uav_architecture.png, id=40, 624.3325pt x 444.66125pt>
+<images/uav_architecture.png, id=45, 624.3325pt x 444.66125pt>
 File: images/uav_architecture.png Graphic file (type png)
 <use images/uav_architecture.png>
 Package pdftex.def Info: images/uav_architecture.png  used on input line 51.
@@ -497,7 +497,7 @@ Overfull \hbox (43.7003pt too wide) in paragraph at lines 32--49
 
 
 [8]
-<images/anatomi_mavlink.png, id=125, 1037.37563pt x 108.405pt>
+<images/anatomi_mavlink.png, id=130, 1037.37563pt x 108.405pt>
 File: images/anatomi_mavlink.png Graphic file (type png)
 <use images/anatomi_mavlink.png>
 Package pdftex.def Info: images/anatomi_mavlink.png  used on input line 81.
@@ -505,32 +505,53 @@ Package pdftex.def Info: images/anatomi_mavlink.png  used on input line 81.
 
 
 [9]
-<images/arsitektur_sitl.png, id=136, 858.95906pt x 362.85562pt>
+Underfull \hbox (badness 10000) in paragraph at lines 107--107
+
+ []
+
+<images/arsitektur_sitl.png, id=141, 858.95906pt x 362.85562pt>
 File: images/arsitektur_sitl.png Graphic file (type png)
 <use images/arsitektur_sitl.png>
 Package pdftex.def Info: images/arsitektur_sitl.png  used on input line 114.
 (pdftex.def)             Requested size: 452.9679pt x 191.34917pt.
 
-
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[10 <./images/anatomi_mavlink.png>])
+[10 <./images/anatomi_mavlink.png>]) (./entries/handson2.tex
 
-[11 <./images/arsitektur_sitl.png>] (./main.aux)
+[11 <./images/arsitektur_sitl.png>]
+Overfull \hbox (1.40518pt too wide) in paragraph at lines 37--38
+[]\OT1/cmr/m/n/12 Saat per-tama kali men-jalankan script Python meng-gu-nakan M
+AVSDK, ter-mi-nal hanya
+ []
+
+
+
+[12]
+Overfull \hbox (17.80638pt too wide) in paragraph at lines 54--55
+[]\OT1/cmr/m/n/12 Awalnya saya meng-gu-nakan be-ber-apa way-point seder-hana, t
+etapi hasil-nya tidak menyeru-
+ []
+
+
+
+[13])
+
+[14] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FC468AD68F9AAFF9D576AD039E4CFB99;566.
+(rerunfilecheck)             Checksum: 85AE0BDFFF4A9590D014D0B4A8DDD418;775.
  ) 
 Here is how much of TeX's memory you used:
- 12156 strings out of 475171
- 180671 string characters out of 5767095
+ 12178 strings out of 475171
+ 181016 string characters out of 5767095
  831605 words of memory out of 5000000
- 34928 multiletter control sequences out of 15000+600000
+ 34934 multiletter control sequences out of 15000+600000
  566151 words of font info for 62 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,11n,79p,558b,1297s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -539,11 +560,11 @@ usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
-.pfb>
-Output written on main.pdf (11 pages, 451275 bytes).
+.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on main.pdf (14 pages, 467881 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
- 91 named destinations out of 1000 (max. 500000)
- 40 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 238 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
+ 104 named destinations out of 1000 (max. 500000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -24,7 +24,7 @@ Setiap entitas yang bisa mengirim atau menerima pesan MAVLink harus punya identi
     \end{itemize}
 \end{itemize}
 
-\paragraph{Messages\newline}
+\subsection*{Messages}
 MAVLink punya berbagai jenis pesan untuk pertukaran data antarkomponen dalam sistem UAV. Tiap pesan punya ID unik yakni \textbf{Message ID}. Untuk MAVLink v1 ada 255, untuk MAVLink v2 hingga 16 juta. \textbf{Dialect} kumpulan definisi pesan yang dapat disesuaikan dengan kebutuhan sistem tertentu.
 \begin{table}[h!]
 \centering
@@ -48,7 +48,7 @@ MISSION ITEM & 39 & COMMAND & Mengirim titik koordinat rute terbang (waypoint). 
 \end{tabular}
 \end{table}
 
-\paragraph{Pola Interaksi dengan MAVLink}
+\subsection*{Pola Interaksi dengan MAVLink}
 \subparagraph{Streaming (Telemetry)}
 \begin{itemize}
     \item Dipakai untuk data yang harus dipantau terus-menerus
@@ -104,10 +104,10 @@ MISSION ITEM & 39 & COMMAND & Mengirim titik koordinat rute terbang (waypoint). 
     \item MAVROS: SDK (software development kit) bagi developer untuk membangun aplikasi berbasis MAVLink dengan bahasa tingkat tinggi (C++, Python, dsb) 
 \end{itemize}
 
-\paragraph{Software In The Loop (SITL)\newline}
+\subsection*{Software In The Loop (SITL)\newline}
 Software In The Loop adalah metode untuk menjalankan dan menguji sistem autopilot wahana UAV tanpa menggunakan perangkat keras fisik. FC dan lingkungan (hukum fisika) disimulasikan oleh perangkat lunak. Flight stack seperti ArduPilot/PX4 dijalankan seperti program biasa di komputer. Sehingga SITL ini Sangat aman dan cocok untuk eksperimen awal dan memeriksa ketepatan implementasi logika navigasi karena tidak ada risiko kerusakan fisik akibat crash.
 
-\paragraph{Arsitektur Sistem SITL}
+\subsection*{Arsitektur Sistem SITL}
 
 \begin{figure}[h]
   \centering

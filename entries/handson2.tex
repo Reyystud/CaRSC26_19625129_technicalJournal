@@ -1,0 +1,103 @@
+\subsection{Hands-On 2: MAVLink dan SITL}
+
+\subsection*{Pendahuluan}
+Hands-On 2 menjadi salah satu pengalaman yang cukup seru dan ilmu banget buat aku seputar UAV, khususnya dalam penggunaan ArduPilot SITL, Gazebo Harmonic, MAVProxy, dan MAVSDK. Pada awalnya, tugas ini terlihat cukup sederhana yaitu menerbangkan drone untuk takeoff, membentuk lintasan angka delapan, lalu melakukan landing. Namun dalam praktiknya, proses yang aku laluin jauh lebih kompleks dari yang aku bayangin.
+
+\subsection*{Awal Pengerjaan}
+Aku mulai dengan melakukan setup environment menggunakan Distrobox Ubuntu di dalam Arch Linux. Proses instalasi mengikuti handout yang diberikan, dan secara umum berjalan dengan lancar. Setelah semua dependensi terpasang, aku coba buat run SITL dan Gazebo buat pertama kalinya.
+Pas simulator berhasil kebuka, aku cukup percaya diri. Namun ternyata, itu baru permulaan.
+
+\subsection*{Masalah Pertama: Drone Tidak Bergerak}
+Ketika aku berhasil melakukan arm dan takeoff melalui MAVProxy, indikator ketinggian menunjukkan bahwa drone sudah berada di udara. Anehnya, di Gazebo drone tetap diam di landasan.
+Kondisi ini janggal dan bikin otak mikir banget karena secara sistem drone harusnya udah keliatan terbang, tapi secara visual tidak terjadi apa apa. Setelah melakukan searching, coba baca baca di dokumentasi, coba trouble shoot, dan tanya AI(kalo udah mentok), aku menemukan bahwa masalah tersebut berasal dari koneksi antara ArduPilot dan plugin Gazebo yang belum sinkron. Beberapa warning seperti:
+
+\begin{verbatim}
+Incorrect protocol magic 0 should be 18458
+\end{verbatim}
+
+ini jadi petunjuk bahwa komunikasi simulator belum berjalan dengan benar.
+
+Setelah restart SITL dan Gazebo beberapa kali serta memastikan world yang digunakan sudah sesuai, akhirnya drone mulai merespons. Momen itu cukup bikin lega karena untuk pertama kalinya aku liat dronenya beneran lepas landas di simulator.
+
+\subsection*{Masalah Kedua: Gagal Landing}
+Setelah berhasil terbang manual, coba coba buat landing. Nah bukannya turun, malah muncul error:
+
+\begin{verbatim}
+AP: Unable to start landing sequence
+AP: Mode change to AUTO RTL failed: No landing sequence found
+\end{verbatim}
+
+aku sempet ngira ada kesalahan besar di konfigurasi. Ternyata penyebabnya cukup simple yaitu mode penerbangan yang digunakan gak sesuai. Drone harus beradax pada mode yang mendukung perintah landing seperti GUIDED.
+
+Dari sini saya belajar bahwa memahami flight mode bukan sekadar teori — pemilihan mode sangat menentukan apakah sebuah command dapat dijalankan atau tidak.
+
+\subsection*{Transisi ke Metode Otonom}
+Jika metode manual sudah cukup menantang, metode otonom memberikan tingkat kesulitan berikutnya.
+
+Saat pertama kali menjalankan script Python menggunakan MAVSDK, terminal hanya menampilkan:
+
+\begin{verbatim}
+Script started
+\end{verbatim}
+
+lalu tidak terjadi apa-apa.
+
+Tidak ada error. Tidak ada pergerakan drone. Hanya diam.
+
+Saya sempat mengira program mengalami crash secara silent, tetapi ternyata script sedang menunggu koneksi ke sistem. Setelah memastikan SITL sudah berjalan dan port yang digunakan benar (\texttt{udpin://0.0.0.0:14540}), barulah drone terdeteksi.
+
+Pelajaran penting dari tahap ini adalah: dalam sistem asynchronous, program yang terlihat "diam" belum tentu bermasalah — bisa jadi ia sedang menunggu event tertentu.
+
+\subsection*{Masalah Ketiga: Lintasan Tidak Membentuk Angka Delapan}
+Bagian paling memakan waktu justru terjadi ketika mencoba membentuk lintasan angka delapan.
+
+Awalnya saya menggunakan beberapa waypoint sederhana, tetapi hasilnya tidak menyerupai angka delapan sama sekali. Drone bergerak terlalu kaku dan patah-patah karena perpindahan antar titik bersifat diskrit.
+
+Saya mencoba:
+\begin{itemize}
+\item Memperbesar area waypoint
+\item Menambah jumlah titik
+\item Mengatur ulang koordinat NED
+\item Memberi jeda hover
+\end{itemize}
+
+Namun hasilnya masih belum memuaskan.
+
+Akhirnya saya memahami bahwa pola seperti angka delapan lebih cocok dibentuk menggunakan pendekatan parametrik (misalnya sinus dan cosinus) agar lintasan menjadi halus dan kontinu. Setelah mengubah strategi tersebut, pergerakan drone terlihat jauh lebih natural di udara.
+
+Momen ketika lintasan angka delapan akhirnya terbentuk dengan jelas menjadi salah satu titik paling memuaskan dalam pengerjaan tugas ini.
+
+\subsection*{Error yang Sempat Mengkhawatirkan}
+Di tengah proses, saya juga sempat menemui pesan:
+
+\begin{verbatim}
+Critical failure 0x100000
+flow_of_ctrl
+\end{verbatim}
+
+Pesan ini terdengar cukup serius. Setelah investigasi, penyebabnya kemungkinan besar adalah konflik Offboard command akibat pengiriman setpoint yang terlalu cepat atau kondisi sistem yang belum stabil.
+
+Solusinya adalah melakukan restart simulator dan memastikan urutan eksekusi Offboard benar:
+setpoint dikirim terlebih dahulu, baru mode Offboard diaktifkan.
+
+Dari sini saya belajar bahwa pada autonomous control, urutan eksekusi sangat krusial.
+
+\subsection*{Refleksi}
+Hands-On ini mengajarkan saya bahwa bekerja dengan sistem robotika bukan hanya soal menulis kode, tetapi juga tentang memahami bagaimana berbagai komponen berinteraksi.
+
+Beberapa hal penting yang saya pelajari:
+\begin{itemize}
+\item Simulator bisa terlihat berjalan normal meskipun koneksi backend bermasalah.
+\item Flight mode menentukan valid atau tidaknya sebuah command.
+\item Autonomous flight membutuhkan logika yang runtut dan stabil.
+\item Warning tidak selalu berbahaya, tetapi tetap perlu dipahami.
+\end{itemize}
+
+Lebih dari itu, saya juga belajar untuk tidak langsung menyerah ketika sistem tidak bekerja sesuai ekspektasi. Sebagian besar solusi justru muncul setelah mencoba menganalisis masalah dengan lebih tenang.
+
+\subsection*{Kesimpulan}
+Meskipun tugas ini terlihat sederhana, proses yang saya lalui penuh dengan trial and error. Dari drone yang tidak bergerak, gagal landing, script yang tampak membeku, hingga lintasan yang tidak terbentuk — semuanya menjadi bagian dari pembelajaran.
+
+Pada akhirnya, keberhasilan menerbangkan drone secara manual dan otonom serta melihatnya membentuk angka delapan memberikan rasa pencapaian tersendiri.
+
+Pengalaman ini membuat saya semakin memahami bahwa dalam bidang UAV dan robotika, kesabaran dan ketelitian sering kali sama pentingnya dengan kemampuan teknis.

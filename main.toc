@@ -27,12 +27,9 @@
 \contentsline {paragraph}{System ID dan Component ID\newline }{8}{section*.28}%
 \contentsline {subparagraph}{System ID}{8}{section*.29}%
 \contentsline {subparagraph}{Component ID}{8}{section*.30}%
-\contentsline {paragraph}{Messages\newline }{9}{section*.31}%
-\contentsline {paragraph}{Pola Interaksi dengan MAVLink}{9}{section*.32}%
 \contentsline {subparagraph}{Streaming (Telemetry)}{9}{section*.33}%
 \contentsline {subparagraph}{Microservices}{9}{section*.34}%
 \contentsline {paragraph}{Anatomi Paket MAVLink}{10}{figure.2}%
 \contentsline {paragraph}{MAVLink Interfaces}{10}{section*.36}%
-\contentsline {paragraph}{Software In The Loop (SITL)\newline }{10}{section*.37}%
-\contentsline {paragraph}{Arsitektur Sistem SITL}{10}{figure.3}%
 \contentsline {paragraph}{Tools untuk SITL}{11}{section*.39}%
+\contentsline {subsection}{\numberline {1.3}Hands-On 2: MAVLink dan SITL}{11}{subsection.1.3}%
